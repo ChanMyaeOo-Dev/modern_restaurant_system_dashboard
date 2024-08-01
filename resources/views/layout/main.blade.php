@@ -12,7 +12,7 @@
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
         @include('components.top_bar')
         @include('components.side_bar')
-        <main class="p-4 md:ml-64 h-auto pt-20">
+        <main class="p-4 md:ml-64 pt-20 h-screen">
             @yield('content')
         </main>
     </div>
