@@ -72,6 +72,12 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+        if ($category->photo) {
+            $path = public_path('images/' . $category->photo);
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        }
         return back()->with('success_message', 'Category has been successfully deleted.');
     }
 }
