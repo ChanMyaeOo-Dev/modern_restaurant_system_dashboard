@@ -12,7 +12,10 @@ Route::get('/', function () {
 });
 
 Route::resource('roles', RoleController::class);
+
 Route::resource('categories', CategoryController::class);
+Route::get('/category_search', [CategoryController::class, 'search'])->name('category_search');
+
 Route::resource('items', ItemController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('order-items', OrderItemController::class);
