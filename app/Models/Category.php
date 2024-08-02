@@ -12,4 +12,14 @@ class Category extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    public function total_items()
+    {
+        return $this->hasMany(Item::class)->count();
+    }
+
+    public function popularity()
+    {
+        return "7 out of 10";
+    }
 }

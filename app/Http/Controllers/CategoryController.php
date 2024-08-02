@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -18,7 +19,7 @@ class CategoryController extends Controller
     {
         $query = $request->input('query');
         $categories = Category::where('name', 'like', "%{$query}%")->get();
-        return response()->json($categories);
+        return response()->json(CategoryResource::collection($categories));
     }
 
     public function create()
@@ -48,18 +49,29 @@ class CategoryController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('category.edit', compact('category'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $old_photo = $category->photo;
+        $category->name = $request->name;
+        if ($request->hasFile('photo')) {
+            $imageName = time() . '.' . $request->photo->extension();
+            $request->photo->move(public_path('images'), $imageName);
+            $category->photo = $imageName;
+        } else {
+            $category->photo = $old_photo;
+        }
+        $category->update();
+        return back()->with('success_message', 'Category has been successfully updated.');
     }
 
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return back()->with('success_message', 'Category has been successfully deleted.');
     }
 }

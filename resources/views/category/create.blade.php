@@ -15,12 +15,6 @@
                     Show All Categories
                 </a>
             </div>
-            @if (session('success_message'))
-                <div class="bg-green-500 text-white p-4 rounded mb-4">
-                    {{ session('success_message') }}
-                </div>
-            @endif
-
             @if ($errors->any())
                 <div class="bg-red-500 text-white p-4 rounded mb-4">
                     <ul>

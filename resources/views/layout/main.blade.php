@@ -16,6 +16,7 @@
             @yield('content')
         </main>
     </div>
+    @include('components.notificataion')
 </body>
 
 </html>
