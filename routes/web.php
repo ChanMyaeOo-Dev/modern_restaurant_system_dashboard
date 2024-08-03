@@ -17,5 +17,7 @@ Route::resource('categories', CategoryController::class);
 Route::get('/category_search', [CategoryController::class, 'search'])->name('category_search');
 
 Route::resource('items', ItemController::class);
+Route::get('/item_search', [ItemController::class, 'search'])->name('item_search');
+
 Route::resource('orders', OrderController::class);
 Route::resource('order-items', OrderItemController::class);

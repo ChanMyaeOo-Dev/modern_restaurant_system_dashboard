@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
@@ -44,15 +43,21 @@ class CategoryController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        return new CategoryResource($category);
     }
 
     public function edit(Category $category)
     {
-        return view('category.edit', compact('category'));
+        return view(
+            'category.edit',
+            [
+                'category' => (new CategoryResource($category))->toArray(request())
+            ]
+        );
     }
+
 
     public function update(Request $request, Category $category)
     {
@@ -61,6 +66,11 @@ class CategoryController extends Controller
         if ($request->hasFile('photo')) {
             $imageName = time() . '.' . $request->photo->extension();
             $request->photo->move(public_path('images'), $imageName);
+            // Delete Old Photo
+            $path = public_path('images/' . $old_photo);
+            if (file_exists($path)) {
+                unlink($path);
+            }
             $category->photo = $imageName;
         } else {
             $category->photo = $old_photo;

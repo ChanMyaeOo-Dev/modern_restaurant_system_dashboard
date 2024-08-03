@@ -1,5 +1,4 @@
 @extends('layout.main')
-
 @section('content')
     <section class="bg-white dark:bg-gray-900 shadow rounded-md p-6">
         <div class="">
@@ -30,14 +29,14 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('categories.update', $category['id']) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="flex flex-col items-end">
                     {{-- DropZone --}}
                     <div class="flex items-center gap-4 h-[240px] w-full mb-4">
                         <div id="preview" class="h-full aspect-square">
-                            <img id="photo" src="{{ asset('images/' . $category->photo) }}" alt="preview"
+                            <img id="photo" src="{{ $category['photo'] }}" alt="preview"
                                 class="h-full w-full object-cover rounded-lg">
                         </div>
                         <div class="w-full h-full">
@@ -73,7 +72,7 @@
                                 Name</label>
                             <input type="text" name="name" id="name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Type Item name" value="{{ $category->name }}" required="">
+                                placeholder="Type Item name" value="{{ $category['name'] }}" required="">
                         </div>
 
                     </div>
