@@ -158,7 +158,7 @@
                     </thead>
                     <tbody>
                         @foreach ($items as $item)
-                            <tr>
+                            <tr class="border-b border-gray-200 hover:bg-gray-100">
                                 <td>
                                     <div class="flex items-center">
                                         <img src="{{ $item['photo'] }}" class="h-6 w-6 mr-2" />

@@ -17,6 +17,7 @@ class CategoryResource extends JsonResource
                 : asset('images/' . $this->photo),
             "total_items" => $this->total_items(),
             "popularity" => $this->popularity(),
+            'items' => ItemResource::collection($this->items),
         ];
     }
 }
