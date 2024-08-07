@@ -27,3 +27,4 @@ Route::resource('orders', OrderController::class);
 Route::resource('order-items', OrderItemController::class);
 
 Route::resource('tables', TableController::class);
+Route::get('/getQrCode', [TableController::class, "getQrCode"])->name('getQrCode');
