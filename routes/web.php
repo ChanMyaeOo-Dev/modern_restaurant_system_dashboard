@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CategoryController;
@@ -21,10 +22,14 @@ Route::resource('categories', CategoryController::class);
 Route::get('/category_search', [CategoryController::class, 'search'])->name('category_search');
 
 Route::resource('items', ItemController::class);
-Route::get('/item_search', [ItemController::class, 'search'])->name('item_search');
 
 Route::resource('orders', OrderController::class);
 Route::resource('order-items', OrderItemController::class);
 
 Route::resource('tables', TableController::class);
 Route::get('/getQrCode', [TableController::class, "getQrCode"])->name('getQrCode');
+
+// routes/web.php
+Route::resource('carts', CartController::class);
+Route::post('/cart/update/{id}', [CartController::class, 'update']);
+Route::delete('/cart/remove/{id}', [CartController::class, 'destroy']);

@@ -28,7 +28,7 @@ class TableController extends Controller
         $table = new Table();
         $table->name = $request->name;
         // Generate QrCode
-        $path = public_path('images/' . "gg_qr_test" . '.svg');
+        $path = "table_qr_" . $request->name . "_" . time() . '.svg';
         QrCode::size(300)
             ->generate($request->name, $path);
         $table->qr_code = $path;

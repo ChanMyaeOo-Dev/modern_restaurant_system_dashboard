@@ -12,7 +12,7 @@ class ItemSeeder extends Seeder
     {
         $categories = Category::all();
         foreach ($categories as $category) {
-            \App\Models\Item::factory(20)->create([
+            \App\Models\Item::factory(3)->create([
                 'category_id' => $category->id,
             ]);
         }
