@@ -118,7 +118,7 @@
                                     </svg>
                                 </div>
                             </th>
-                            <th>
+                            <th class="!ps-3">
                                 <div class="flex items-center flex-nowrap">
                                     <span>Table</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -155,11 +155,11 @@
                                 </td>
                                 <td>
                                     <div class="flex items-center">
-                                        <span>{{ $order['table'] }}</span>
+                                        <span>{{ $order['table']->name }}</span>
                                     </div>
                                 </td>
                                 <td>
-                                    {{ $order['total'] . ' MMK' }}
+                                    {{ $order['total_price'] . ' MMK' }}
                                 </td>
                                 <td class="px-4 py-3 gap-2 flex items-center justify-end">
                                     <form action="{{ route('orders.destroy', $order['id']) }}" method="POST">

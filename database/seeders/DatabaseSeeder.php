@@ -6,17 +6,20 @@ namespace Database\Seeders;
 
 use App\Models\Cart;
 use App\Models\Table;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
         // Seed categories first
         $this->call(CategorySeeder::class);
         // Seed items after categories

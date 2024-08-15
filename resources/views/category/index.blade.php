@@ -206,14 +206,14 @@
                                     .id);
                                 rows += `
                             <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                <td class="py-3 px-6 text-left">
+                                <td class="py-3 px-4 text-left">
                                     <div class="flex items-center">
                                         <img src="${category.photo}" alt="${category.name}" class="h-6 w-6 mr-2"/>
                                         <span>${category.name}</span>
                                     </div>
                                 </td>
-                                <td class="py-3 px-6 text-left">${category.total_items} items</td>
-                                <td class="py-3 px-6 text-left">${category.popularity}</td>
+                                <td class="py-3 px-4 text-left">${category.total_items} items</td>
+                                <td class="py-3 px-4 text-left">${category.popularity}</td>
                                 <td class="px-4 py-3 gap-2 flex items-center justify-end">
                                     <form action="${deleteCategoryRoute}" method="POST">
                                         @csrf

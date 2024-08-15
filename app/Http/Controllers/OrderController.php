@@ -6,6 +6,7 @@ use App\Http\Resources\OrderResource;
 use App\Models\Cart;
 use App\Models\Item;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -21,18 +22,38 @@ class OrderController extends Controller
     {
         $items = Item::all();
         $carts = Cart::all();
-        return view('order.create', compact('items', 'carts'));
+        // Replae With Current User Id
+        $all_carts = Cart::where('user_id', "=", "1")->get();
+        $cart_total = 0;
+        foreach ($all_carts as $ind_cart) {
+            $cart_total += $ind_cart->item->price * $ind_cart->quantity;
+        }
+        return view('order.create', compact('items', 'carts', 'cart_total'));
     }
 
     public function store(Request $request)
     {
-        $rules = [
-            'name' => 'required|string|max:255',
-        ];
-        $request->validate($rules);
         $order = new Order();
-        $order->name = $request->name;
+        // Replace Table Id From frontend
+        $table_id = "1";
+        // Replae With Current User Id
+        $all_carts = Cart::where('user_id', 1)->with('item')->get();
+        $total = $all_carts->sum(function ($cart) {
+            return $cart->item->price * $cart->quantity;
+        });
+        $order->table_id = $table_id;
+        $order->total_price = $total;
         $order->save();
+        foreach ($all_carts as $ind_cart) {
+            $order_item = new OrderItem();
+            $order_item->order_id = $order->id;
+            $order_item->item_id = $ind_cart->item->id;
+            $order_item->quantity = $ind_cart->quantity;
+            $order_item->price = $ind_cart->item->price;
+            $order_item->save();
+        }
+        //Delete all user carts
+        Cart::where('user_id', 1)->delete();
         return back()->with('success_message', 'New Order has been successfully saved.');
     }
 

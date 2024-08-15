@@ -30,5 +30,6 @@ thead tr th {
     @apply flex gap-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700;
 }
 
-.action_btn {
+#dt-search-0 {
+    @apply focus:outline-none focus:border focus:border-gray-200 focus:ring-0;
 }

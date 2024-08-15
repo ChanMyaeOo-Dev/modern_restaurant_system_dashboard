@@ -9,21 +9,7 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index() {}
     public function create()
     {
         //
@@ -74,12 +60,20 @@ class CartController extends Controller
         $action = $request->action;
         if ($cart) {
             if ($action == "add") {
-                $cart->quantity = $current_qty + 1;
+                $new_qty = $current_qty + 1;
+                $cart->quantity = $new_qty;
             } else if ($current_qty > 1) {
-                $cart->quantity = $current_qty - 1;
+                $new_qty = $current_qty - 1;
+                $cart->quantity = $new_qty;
             }
             $cart->update();
-            return response()->json(['success' => true, 'quantity' => $cart->quantity]);
+            // Replae With Current User Id
+            $all_carts = Cart::where('user_id', "=", "1")->get();
+            $total = 0;
+            foreach ($all_carts as $ind_cart) {
+                $total += $ind_cart->item->price * $ind_cart->quantity;
+            }
+            return response()->json(['success' => true, 'quantity' => $cart->quantity, "total" => $total, "all_carts" => $all_carts]);
         }
         return response()->json(['success' => false]);
     }
@@ -87,9 +81,10 @@ class CartController extends Controller
     public function destroy($id)
     {
         $cart = Cart::find($id);
+        $cartLength = Cart::where('user_id', "=", "1")->count();
         if ($cart) {
             $cart->delete();
-            return response()->json(['success' => true]);
+            return response()->json(['success' => true, "cartLength" => $cartLength]);
         }
         return response()->json(['success' => false]);
     }
