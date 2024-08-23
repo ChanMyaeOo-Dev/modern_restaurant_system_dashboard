@@ -6,4 +6,5 @@ import "https://cdn.datatables.net/2.1.3/js/dataTables.js";
 import "https://cdn.datatables.net/2.1.3/js/dataTables.tailwindcss.js";
 new DataTable("#example", {
     bLengthChange: false,
+    order: [],
 });

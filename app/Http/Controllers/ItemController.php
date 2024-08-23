@@ -51,9 +51,9 @@ class ItemController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Item $item)
     {
-        //
+        return view('item.show', compact('item'));
     }
 
     public function edit(Item $item)

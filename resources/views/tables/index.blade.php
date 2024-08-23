@@ -23,34 +23,13 @@
             <div class="overflow-x-auto">
                 <div class="grid grid-cols-3 gap-4">
                     @foreach ($tables as $table)
-                        @if ($table->status == 'available')
-                            <div class="table-card">
-                                <img src="{{ asset($table->qr_code) }}" class="w-24 h-24 p-2 bg-slate-50">
-                                <div class="flex flex-col items-start me-auto">
-                                    <p class="text-sm text-slate-400">{{ '#' . $table->id }}</p>
-                                    <p class="text-lg font-bold mb-1 text-slate-700">{{ $table->name }}</p>
-                                    <div
-                                        class="bg-emerald-100 rounded-full px-2 py-1 flex items-center justify-center gap-1">
-                                        <span
-                                            class="w-2.5 h-2.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
-                                        <p class="text-xs me-2">Available</p>
-                                    </div>
-                                </div>
+                        <div class="table-card">
+                            <img src="{{ asset('qr_codes/' . $table->qr_code) }}" class="w-24 h-24 p-2 bg-slate-50">
+                            <div class="flex flex-col items-start me-auto">
+                                <p class="text-sm text-slate-400">{{ '#' . $table->id }}</p>
+                                <p class="text-lg font-bold mb-1 text-slate-700">{{ $table->name }}</p>
                             </div>
-                        @else
-                            <div class="table-card">
-                                <img src="{{ asset($table->qr_code) }}" class="w-24 h-24 p-2 bg-slate-50">
-                                <div class="flex flex-col items-start">
-                                    <p class="text-sm">#{{ $table->id }}</p>
-                                    <p class="text-lg font-bold mb-1">{{ $table->name }}</p>
-                                    <div class="bg-red-100 rounded-full px-2 py-1 flex items-center justify-center gap-2">
-                                        <span
-                                            class="w-2.5 h-2.5 animate-ping bg-red-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
-                                        <p class="text-xs me-2">Busy</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
+                        </div>
                     @endforeach
                 </div>
                 <!-- Main modal -->

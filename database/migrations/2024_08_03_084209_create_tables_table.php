@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('qr_code');
-            $table->enum('status', ['available', 'busy'])->default('available');
             $table->timestamps();
         });
     }

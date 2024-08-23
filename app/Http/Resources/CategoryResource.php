@@ -10,7 +10,7 @@ class CategoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id" => $this->id,
+            "category_id" => $this->id,
             "name" => $this->name,
             "photo" => Str::startsWith($this->photo, 'http')
                 ? $this->photo

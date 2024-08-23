@@ -14,6 +14,7 @@
                         <p class="text-gray-500 font-bold mb-2">{{ $item->price . ' MMK' }}</p>
                         <form action="{{ route('carts.store') }}" method="POST">
                             @csrf
+                            <input type="hidden" name="table_id" value="1">
                             <input type="hidden" name="item_id" value="{{ $item->id }}">
                             <button
                                 class="w-full text-gray-700 border border-gray-700 rounded-md text-sm p-2 hover:bg-slate-500 hover:text-white">
@@ -70,8 +71,9 @@
                     </div>
                     <form action="{{ route('orders.store') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="table_id" value="1">
                         <button
-                            class="w-full text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm p-3 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                            class="mt-3 w-full text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm p-3 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                             Order Now
                         </button>
                     </form>

@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->string('table_id');
             $table->foreignId('item_id');
-            $table->integer('quantity');
+            $table->integer('quantity')->default(1);
+            $table->longText('special_request')->nullable();
             $table->timestamps();
         });
     }

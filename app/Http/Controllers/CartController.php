@@ -9,14 +9,9 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function index() {}
-    public function create()
-    {
-        //
-    }
-
     public function store(StoreCartRequest $request)
     {
+        $table_id = $request->table_id;
         $new_item_id = $request->item_id;
         $cart = Cart::where('item_id', $new_item_id)->first();
         if ($cart) {
@@ -26,32 +21,10 @@ class CartController extends Controller
         }
         $cart = new Cart();
         $cart->item_id = $request->item_id;
-        $cart->user_id = "1";
+        $cart->table_id = $table_id;
         $cart->quantity = 1;
         $cart->save();
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cart $cart)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cart $cart)
-    {
-        //
     }
     public function update(Request $request, $id)
     {
@@ -68,7 +41,7 @@ class CartController extends Controller
             }
             $cart->update();
             // Replae With Current User Id
-            $all_carts = Cart::where('user_id', "=", "1")->get();
+            $all_carts = Cart::where('table_id', "=", "1")->get();
             $total = 0;
             foreach ($all_carts as $ind_cart) {
                 $total += $ind_cart->item->price * $ind_cart->quantity;
@@ -81,7 +54,7 @@ class CartController extends Controller
     public function destroy($id)
     {
         $cart = Cart::find($id);
-        $cartLength = Cart::where('user_id', "=", "1")->count();
+        $cartLength = Cart::where('table_id', "=", "1")->count();
         if ($cart) {
             $cart->delete();
             return response()->json(['success' => true, "cartLength" => $cartLength]);

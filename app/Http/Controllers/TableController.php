@@ -16,22 +16,19 @@ class TableController extends Controller
         return view('tables.index', compact('tables'));
     }
 
-    public function getQrCode(Request $request)
-    {
-        $path = public_path('images/' . "gg_qr_test" . '.svg');
-        $qr_code = QrCode::size(300)
-            ->generate('A simple example of QR code', $path);
-    }
-
     public function store(StoreTableRequest $request)
     {
         $table = new Table();
+        $table_id = round(microtime(true) * 1000);
+        $table->id = $table_id;
         $table->name = $request->name;
         // Generate QrCode
-        $path = "table_qr_" . $request->name . "_" . time() . '.svg';
+        // $path = "qr_codes/table_qr_" . $request->name . "_" . time() . '.svg';
+        $filename = "table_qr_" . $request->name . "_" . time() . '.svg';
+        $path = public_path('qr_codes/' . $filename);
         QrCode::size(300)
-            ->generate($request->name, $path);
-        $table->qr_code = $path;
+            ->generate("http://192.168.45.150:3000/table/" . $table_id, $path);
+        $table->qr_code = $filename;
         $table->save();
         return back()->with('success_message', 'New Table has been successfully saved.');
     }

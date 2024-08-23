@@ -7,37 +7,42 @@ use App\Models\Cart;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Table;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
 
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::where('is_completed', '0')->latest()->get();
         return view('order.index', compact('orders'));
     }
-
+    public function orderHistory()
+    {
+        $orders = Order::where('is_completed', '1')->latest()->get();
+        return view('order.history', compact('orders'));
+    }
     public function create()
     {
         $items = Item::all();
         $carts = Cart::all();
-        // Replae With Current User Id
-        $all_carts = Cart::where('user_id', "=", "1")->get();
+        $tables = Table::all();
+        $table_id = Auth::id();
+        $all_carts = Cart::where('table_id', "=", $table_id)->get();
         $cart_total = 0;
         foreach ($all_carts as $ind_cart) {
             $cart_total += $ind_cart->item->price * $ind_cart->quantity;
         }
-        return view('order.create', compact('items', 'carts', 'cart_total'));
+        return view('order.create', compact('items', 'carts', 'cart_total', 'tables'));
     }
 
     public function store(Request $request)
     {
         $order = new Order();
-        // Replace Table Id From frontend
-        $table_id = "1";
-        // Replae With Current User Id
-        $all_carts = Cart::where('user_id', 1)->with('item')->get();
+        $table_id = $request->table_id;
+        $all_carts = Cart::where('table_id', $table_id)->with('item')->get();
         $total = $all_carts->sum(function ($cart) {
             return $cart->item->price * $cart->quantity;
         });
@@ -53,13 +58,14 @@ class OrderController extends Controller
             $order_item->save();
         }
         //Delete all user carts
-        Cart::where('user_id', 1)->delete();
+        Cart::where('table_id', 1)->delete();
         return back()->with('success_message', 'New Order has been successfully saved.');
     }
 
     public function show(Order $order)
     {
-        return new OrderResource($order);
+        $order_items = $order->order_items;
+        return view('order.show', compact('order_items', 'order'));
     }
 
     public function edit(Order $order)
@@ -72,11 +78,11 @@ class OrderController extends Controller
         );
     }
 
-    public function update(Request $request, Order $order)
+    public function update(Order $order)
     {
-        $order->name = $request->name;
+        $order->is_completed = "1";
         $order->update();
-        return back()->with('success_message', 'Order has been successfully updated.');
+        return back()->with('success_message', 'Order has been successfully completed.');
     }
 
     public function destroy(Order $order)

@@ -12,15 +12,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('table_id');
             $table->string('total_price');
+            $table->enum('is_completed', ['0', '1'])->default('0');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('orders');
