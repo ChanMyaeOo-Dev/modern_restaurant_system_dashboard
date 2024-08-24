@@ -11,6 +11,7 @@ class OrderItemApiResource extends JsonResource
         return [
             'quantity' => $this->quantity,
             'unit_price' => $this->price,
+            'special_request' => $this->special_request,
             'item' => new ItemResource($this->item),
         ];
     }

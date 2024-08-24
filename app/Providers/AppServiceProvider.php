@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Item;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use App\Models\Order;
+use App\Models\OrderItem;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('*', function ($view) {
+            $view->with('orderCount', Order::where('is_completed', '0')->count());
+            $view->with('orderItemCount', OrderItem::count());
+            $view->with('itemCount', Item::count());
+        });
     }
 }

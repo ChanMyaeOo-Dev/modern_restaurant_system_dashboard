@@ -697,77 +697,52 @@
                 <p class="text-gray-400 mb-4">No Items in the cart yet.</p>
             </div>
             <div class="overflow-x-auto {{ count($orders) > 0 ? '' : 'hidden' }}">
-                <table id="example" class="display" style="width:100%">
+                <table id="search-table" class="w-full">
                     <thead>
                         <tr>
-                            <th>
+                            <th class="!px-4">
                                 <div class="flex items-center flex-nowrap">
                                     <span>ID</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                        class="size-3 ms-1">
-                                        <path fill-rule="evenodd"
-                                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
                                 </div>
                             </th>
-                            <th class="!ps-3">
+                            <th class="!px-4">
                                 <div class="flex items-center flex-nowrap">
                                     <span>Table</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                        class="size-3 ms-1">
-                                        <path fill-rule="evenodd"
-                                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
                                 </div>
                             </th>
-                            <th>
+                            <th class="!px-4">
                                 <div class="flex items-center flex-nowrap">
                                     <span>Total Price</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                        class="size-3 ms-1">
-                                        <path fill-rule="evenodd"
-                                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
                                 </div>
                             </th>
-                            <th>
+                            <th class="!px-4">
                                 <div class="flex items-center flex-nowrap">
                                     <span>Total Dish</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                        class="size-3 ms-1">
-                                        <path fill-rule="evenodd"
-                                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
                                 </div>
                             </th>
-                            <th>
-                                <span class="sr-only">Actions</span>
+                            <th class="!px-4">
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($orders as $order)
                             <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                <td>
+                                <td class="px-4">
                                     <div class="flex items-center">
                                         <span>{{ $order['id'] }}</span>
                                     </div>
                                 </td>
-                                <td>
+                                <td class="px-4">
                                     <a href="{{ route('orders.show', $order['id']) }}" class="text-bold underline">
                                         <div class="flex items-center">
                                             <span>{{ $order['table']->name }}</span>
                                         </div>
                                     </a>
                                 </td>
-                                <td>
+                                <td class="px-4">
                                     {{ $order['total_price'] . ' Ks' }}
                                 </td>
-                                <td>
+                                <td class="px-4">
                                     {{ count($order['order_items']) }}
                                 </td>
                                 <td class="px-4 py-3 gap-2 flex items-center justify-end">
@@ -792,4 +767,13 @@
             </div>
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+    <script>
+        if (document.getElementById("search-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#search-table", {
+                searchable: true,
+                sortable: false
+            });
+        }
+    </script>
 @endsection

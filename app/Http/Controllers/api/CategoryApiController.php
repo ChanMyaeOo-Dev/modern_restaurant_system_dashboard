@@ -26,6 +26,7 @@ class CategoryApiController extends Controller
         return response()->json([
             "success" => true,
             "category" => $category->name,
+            "category_image" => $category->photo,
             "items" => $items
         ]);
     }

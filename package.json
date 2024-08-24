@@ -18,6 +18,8 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "bootstrap-icons": "^1.11.3"
+        "apexcharts": "^3.52.0",
+        "bootstrap-icons": "^1.11.3",
+        "simple-datatables": "^9.1.0"
     }
 }

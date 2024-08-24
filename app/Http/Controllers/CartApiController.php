@@ -33,6 +33,8 @@ class CartApiController extends Controller
             ->first();
         if ($cart) {
             $cart->quantity = $cart->quantity + 1;
+            $new_special_request = $cart->special_request . " | " . $special_request;
+            $cart->special_request = $new_special_request;
             $cart->update();
             return response()->json([
                 "success" => true,

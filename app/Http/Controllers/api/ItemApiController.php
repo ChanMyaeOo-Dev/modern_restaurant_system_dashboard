@@ -4,10 +4,9 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
-use App\Http\Resources\ItemResource;
+use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Item;
-use Illuminate\Http\Request;
 
 class ItemApiController extends Controller
 {
@@ -27,6 +26,26 @@ class ItemApiController extends Controller
         return response()->json([
             "success" => true,
             "data" => $item
+        ]);
+    }
+
+    public function hot_items()
+    {
+        $hotItems = DB::table('order_items')
+            ->join('items', 'order_items.item_id', '=', 'items.id')
+            ->select(
+                'items.id',
+                'items.name',
+                'items.photo',
+                'items.price',
+                DB::raw('SUM(order_items.quantity) as total_ordered')
+            )
+            ->groupBy('items.id', 'items.name', 'items.price')
+            ->orderBy('total_ordered', 'desc')
+            ->take(5)->get();
+        return response()->json([
+            "success" => true,
+            "data" => $hotItems
         ]);
     }
 }

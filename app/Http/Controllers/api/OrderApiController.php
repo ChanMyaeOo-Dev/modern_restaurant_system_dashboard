@@ -11,13 +11,29 @@ use Illuminate\Http\Request;
 
 class OrderApiController extends Controller
 {
-    public function test(Request $request)
+    public function allOrders()
     {
-        return $request;
+        $orders = Order::where('is_completed', '0')->latest()->get();
+        $orders = OrderApiResource::collection($orders);
+        return response()->json([
+            "success" => true,
+            "orders" => $orders
+        ]);
+    }
+    public function orderDone(Request $request)
+    {
+        $order = Order::find($request->order_id);
+        // return $order;
+        $order->is_completed = "1";
+        $order->save();
+        return response()->json([
+            "success" => true,
+            "order" => $order
+        ]);
     }
     public function index(Request $request)
     {
-        $orders = Order::where('table_id', $request->table_id)->get();
+        $orders = Order::where('is_completed', '0')->where('table_id', $request->table_id)->get();
         $orders = OrderApiResource::collection($orders);
         return response()->json([
             "success" => true,
@@ -49,6 +65,7 @@ class OrderApiController extends Controller
             $order_item->item_id = $ind_cart->item->id;
             $order_item->quantity = $ind_cart->quantity;
             $order_item->price = $ind_cart->item->price;
+            $order_item->special_request = $ind_cart->special_request;
             $order_item->save();
         }
         //Delete all user carts

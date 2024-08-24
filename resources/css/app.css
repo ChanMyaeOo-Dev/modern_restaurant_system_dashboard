@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
 .side_bar_icon {
     @apply flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white;
@@ -30,11 +29,33 @@ thead tr th {
 .table-card {
     @apply flex gap-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700;
 }
-
-#dt-search-0 {
-    @apply focus:outline-none focus:border focus:border-gray-200 focus:ring-0;
+.datatable-top {
+    @apply flex flex-row-reverse items-center justify-between mb-2 py-2 px-1;
 }
 
-.d-bg-1 {
-    background: linear-gradient(45deg, #2c3e50 54%, #2980b9 75%) !important;
+.datatable-input {
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+
+.datatable-dropdown label {
+    @apply flex items-center gap-3;
+}
+
+.datatable-selector {
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+.datatable-container {
+    @apply px-1;
+}
+.datatable-bottom {
+    @apply mt-4;
+}
+.datatable-pagination {
+    @apply float-end;
+}
+.datatable-pagination-list {
+    @apply flex gap-2;
+}
+.datatable-pagination-list-item {
+    @apply px-3 py-1 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700;
 }
