@@ -13,7 +13,7 @@ class OrderApiResource extends JsonResource
             "table" => $this->table_id,
             "total_price" => $this->total_price,
             "is_completed" => $this->is_completed,
-            "order_time" => $this->created_at->format('H:i'),
+            "order_time" => $this->created_at->format('h:i A'),
             "order_items" => OrderItemApiResource::collection($this->order_items),
         ];
     }
