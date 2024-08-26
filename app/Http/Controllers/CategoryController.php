@@ -30,14 +30,16 @@ class CategoryController extends Controller
     {
         $rules = [
             'name' => 'required|string|max:255',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
         $request->validate($rules);
-        $imageName = time() . '.' . $request->photo->extension();
-        $request->photo->move(public_path('images'), $imageName);
         $category = new Category();
+        if (isset($request->photo)) {
+            $imageName = time() . '.' . $request->photo->extension();
+            $request->photo->move(public_path('images'), $imageName);
+            $category->photo = $imageName;
+        }
         $category->name = $request->name;
-        $category->photo = $imageName;
         $category->save();
         return back()->with('success_message', 'New Category has been successfully saved.');
     }
@@ -81,13 +83,13 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        $category->delete();
         if ($category->photo) {
             $path = public_path('images/' . $category->photo);
             if (file_exists($path)) {
                 unlink($path);
             }
         }
+        $category->delete();
         return back()->with('success_message', 'Category has been successfully deleted.');
     }
 }

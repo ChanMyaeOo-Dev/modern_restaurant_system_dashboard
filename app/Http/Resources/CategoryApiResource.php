@@ -14,7 +14,7 @@ class CategoryApiResource extends JsonResource
             "name" => $this->name,
             "imageUrl" => Str::startsWith($this->photo, 'http')
                 ? $this->photo
-                : asset('images/' . $this->photo),
+                : url('images/' . $this->photo),
         ];
     }
 }

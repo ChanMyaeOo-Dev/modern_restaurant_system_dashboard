@@ -16,7 +16,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
-        HandleCors::class,
+        // HandleCors::class,
         \App\Http\Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
@@ -42,7 +42,8 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'throttle:api',
+            // 'throttle:api',
+            // \Illuminate\Routing\Middleware\ThrottleRequests::class . ':1000,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];

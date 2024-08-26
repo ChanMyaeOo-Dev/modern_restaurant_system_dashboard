@@ -35,17 +35,19 @@ class ItemController extends Controller
             'description' => 'required|string',
             'price' => 'required|max:255',
             'category' => 'required|max:255',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
         $request->validate($rules);
-        $imageName = time() . '.' . $request->photo->extension();
-        $request->photo->move(public_path('images'), $imageName);
         $item = new Item();
+        if (isset($request->photo)) {
+            $imageName = time() . '.' . $request->photo->extension();
+            $request->photo->move(public_path('images'), $imageName);
+            $item->photo = $imageName;
+        }
         $item->name = $request->name;
         $item->description = $request->description;
         $item->price = $request->price;
         $item->category_id = $request->category;
-        $item->photo = $imageName;
         $item->save();
         return back()->with('success_message', 'New Item has been successfully saved.');
     }
@@ -93,13 +95,13 @@ class ItemController extends Controller
 
     public function destroy(Item $item)
     {
-        $item->delete();
         if ($item->photo) {
             $path = public_path('images/' . $item->photo);
             if (file_exists($path)) {
                 unlink($path);
             }
         }
+        $item->delete();
         return back()->with('success_message', 'Item has been successfully deleted.');
     }
 }

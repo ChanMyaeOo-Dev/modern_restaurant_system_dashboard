@@ -14,7 +14,7 @@ class CategoryResource extends JsonResource
             "name" => $this->name,
             "photo" => Str::startsWith($this->photo, 'http')
                 ? $this->photo
-                : asset('images/' . $this->photo),
+                : url('images/' . $this->photo),
             "total_items" => $this->total_items(),
             "popularity" => $this->popularity(),
             'items' => ItemResource::collection($this->items),

@@ -67,14 +67,15 @@ class TableController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Table  $table
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Table $table)
     {
-        //
+        if ($table->qr_code) {
+            $path = public_path('qr_codes/' . $table->qr_code);
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        }
+        $table->delete();
+        return back()->with('success_message', 'Table has been successfully deleted.');
     }
 }

@@ -21,10 +21,10 @@ class ItemResource extends JsonResource
             "description" => $this->description,
             "photo" => Str::startsWith($this->photo, 'http')
                 ? $this->photo
-                : asset('images/' . $this->photo),
+                : url('images/' . $this->photo),
             "price" => $this->price,
             "category_id" => $this->category_id,
-            "category" => $this->category->name,
+            "category" => $this->category ? $this->category->name : "No Category",
         ];
     }
 }
