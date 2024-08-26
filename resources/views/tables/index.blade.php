@@ -24,7 +24,8 @@
                 <div class="grid grid-cols-3 gap-4">
                     @foreach ($tables as $table)
                         <div class="table-card">
-                            <img src="{{ asset('qr_codes/' . $table->qr_code) }}" class="w-24 h-24 p-2 bg-slate-50">
+                            <img src="{{ $table->qr_code == 'admin' ? 'https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1724603617~exp=1724607217~hmac=e8922d602dde5882329237e691c32c5c0c917cefc9a1db2de715921cf64a7b8f&w=1480' : asset('qr_codes/' . $table->qr_code) }}"
+                                class="w-24 h-24 p-2 bg-slate-50">
                             <div class="flex flex-col items-start me-auto">
                                 <p class="text-sm text-slate-400">{{ '#' . $table->id }}</p>
                                 <p class="text-lg font-bold mb-1 text-slate-700">{{ $table->name }}</p>

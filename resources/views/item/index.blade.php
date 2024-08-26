@@ -104,51 +104,31 @@
                 </div>
             </div>
             <div class="overflow-x-auto">
-                <table id="example" class="display" style="width:100%">
+                <table id="search-table" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>
+                            <th class="!px-4">
                                 <div class="flex items-center flex-nowrap">
                                     <span>Name</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                        class="size-3 ms-1">
-                                        <path fill-rule="evenodd"
-                                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
+
                                 </div>
                             </th>
                             <th>
                                 <div class="flex items-center flex-nowrap">
                                     <span>Price</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                        class="size-3 ms-1">
-                                        <path fill-rule="evenodd"
-                                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
+
                                 </div>
                             </th>
                             <th>
                                 <div class="flex items-center flex-nowrap">
                                     <span>Category</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                        class="size-3 ms-1">
-                                        <path fill-rule="evenodd"
-                                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
+
                                 </div>
                             </th>
                             <th>
                                 <div class="flex items-center flex-nowrap">
                                     <span>Popularity</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                        class="size-3 ms-1">
-                                        <path fill-rule="evenodd"
-                                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
+
                                 </div>
                             </th>
                             <th>
@@ -158,7 +138,7 @@
                     </thead>
                     <tbody>
                         @foreach ($items as $item)
-                            <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <tr class="border-b border-gray-200 hover:bg-gray-100 px-4">
                                 <td>
                                     <div class="flex items-center">
                                         <img src="{{ $item['photo'] }}" class="h-6 w-6 mr-2" />
@@ -246,4 +226,13 @@
             </div>
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+    <script>
+        if (document.getElementById("search-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#search-table", {
+                searchable: true,
+                sortable: false
+            });
+        }
+    </script>
 @endsection
