@@ -35,7 +35,7 @@ class ItemController extends Controller
             'description' => 'required|string',
             'price' => 'required|max:255',
             'category' => 'required|max:255',
-            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ];
         $request->validate($rules);
         $item = new Item();

@@ -59,3 +59,7 @@ thead tr th {
 .datatable-pagination-list-item {
     @apply px-3 py-1 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700;
 }
+
+.qr_bg {
+    background-image: url("/public/images/qr_bg.png");
+}

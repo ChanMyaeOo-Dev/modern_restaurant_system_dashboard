@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ItemResource;
 use App\Models\Item;
 use App\Models\Order;
-use App\Models\OrderItem;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +16,7 @@ class DashboardController extends Controller
         $orders = Order::where('is_completed', '0')->latest()->take(8)->get();
         // Get the last 7 days' income for each day
         // Fetch the last 7 days' income data
-        $last7DaysIncome = Order::where('is_completed', '0') // Assuming '1' means the order is completed
+        $last7DaysIncome = Order::where('is_completed', '1') // Assuming '1' means the order is completed
             ->whereDate('created_at', '>=', Carbon::now()->subDays(6)) // Get orders from the last 7 days including today
             ->select(DB::raw('DATE(created_at) as date'), DB::raw('SUM(total_price) as income')) // Replace 'total_price' with your income field
             ->groupBy('date')
@@ -52,6 +50,9 @@ class DashboardController extends Controller
             ->groupBy('items.id', 'items.name', 'items.price')
             ->orderBy('total_ordered', 'desc')
             ->take(5)->get();
-        return view('dashboard.index', compact('orders', 'totalSale', 'last7DaysIncomeArray', 'last7Days', 'hotItems', 'total_sale'));
+
+        $latest_items = Item::latest()->take(5)->get();
+        $latest_items = ItemResource::collection($latest_items);
+        return view('dashboard.index', compact('orders', 'totalSale', 'last7DaysIncomeArray', 'last7Days', 'hotItems', 'total_sale', 'latest_items'));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\OrderItemResource;
 use App\Http\Resources\OrderResource;
 use App\Models\Cart;
 use App\Models\Item;
@@ -64,7 +65,8 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order_items = $order->order_items;
+        $order_items =
+            $order->order_items;;
         return view('order.show', compact('order_items', 'order'));
     }
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\HotItemResource;
+use App\Http\Resources\ItemResource;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Item;
@@ -25,7 +27,7 @@ class ItemApiController extends Controller
         $item = Item::where('id', $id)->first();
         return response()->json([
             "success" => true,
-            "data" => $item
+            "data" => new ItemResource($item)
         ]);
     }
 
@@ -45,7 +47,7 @@ class ItemApiController extends Controller
             ->take(5)->get();
         return response()->json([
             "success" => true,
-            "data" => $hotItems
+            "data" => HotItemResource::collection($hotItems)
         ]);
     }
 }

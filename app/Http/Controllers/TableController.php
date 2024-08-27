@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTableRequest;
 use App\Http\Requests\UpdateTableRequest;
+use App\Http\Resources\TableResource;
 use App\Models\Table;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -27,21 +28,15 @@ class TableController extends Controller
         $filename = "table_qr_" . $request->name . "_" . time() . '.svg';
         $path = public_path('qr_codes/' . $filename);
         QrCode::size(300)
-            ->generate("http://192.168.45.80:3000/table/" . $table_id, $path);
+            ->generate("http://192.168.41.57:3000/table/" . $table_id, $path);
         $table->qr_code = $filename;
         $table->save();
         return back()->with('success_message', 'New Table has been successfully saved.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Table  $table
-     * @return \Illuminate\Http\Response
-     */
     public function show(Table $table)
     {
-        //
+        return view('tables.show', compact('table'));
     }
 
     /**

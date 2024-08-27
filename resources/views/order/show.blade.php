@@ -38,8 +38,8 @@
                                 class="size-5 me-1">
                                 <path fill-rule="evenodd"
                                     d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365
-                                                                                                                                                                                                                                                                                                                                                                                                            9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53
-                                                                                                                                                                                                                                                                                                                                                                                                            12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
                                     clip-rule="evenodd" />
                             </svg>
                             Order Completed
@@ -53,7 +53,8 @@
             <div class="grid gap-4 grid-cols-4 w-full mb-4">
                 @foreach ($order_items as $order_item)
                     <div class="bg-white rounded-md shadow p-4 md:p-5">
-                        <img src="{{ $order_item->item->photo }}" class="rounded shadow-md mb-3">
+                        <img src="{{ Str::startsWith($order_item->item->photo, 'http') ? $order_item->item->photo : asset('images/' . $order_item->item->photo) }}"
+                            class="rounded shadow-md mb-3">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="size-4 me-2">
@@ -89,7 +90,7 @@
             </div>
         </div>
         {{-- Invoice --}}
-        <div class="bg-white dark:bg-gray-900 shadow rounded-md p-6 h-full w-1/3">
+        <div id="invoice_div" class="bg-white dark:bg-gray-900 shadow rounded-md p-6 h-full w-1/3">
             <div class="flex flex-col md:flex-row items-center pb-4 border-b mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 me-2">
                     <path fill-rule="evenodd"
@@ -118,6 +119,20 @@
                 <p class="text-gray-900 dark:text-white text-lg font-bold">Total :</p>
                 <p class="text-gray-900 dark:text-white text-lg font-bold">{{ $order->total_price . ' Ks' }}</p>
             </div>
+            <button onclick="printContent('invoice_div')"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
+                Print
+            </button>
         </div>
     </section>
+    <script>
+        function printContent(invoice_div) {
+            var content = document.getElementById(invoice_div).innerHTML;
+            var originalContent = document.body.innerHTML;
+            document.body.innerHTML = content;
+            window.print();
+            document.body.innerHTML = originalContent;
+            location.reload(); // Reload the page to restore original content
+        }
+    </script>
 @endsection

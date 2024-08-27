@@ -28,7 +28,8 @@
                                 class="w-24 h-24 p-2 bg-slate-50">
                             <div class="flex flex-col items-start me-auto">
                                 <p class="text-sm text-slate-400">{{ '#' . $table->id }}</p>
-                                <p class="text-lg font-bold mb-1 text-slate-700">{{ $table->name }}</p>
+                                <a href="{{ route('tables.show', $table->id) }}"
+                                    class="text-lg font-bold mb-1 text-slate-700">{{ $table->name }}</a>
                             </div>
                             <form action="{{ route('tables.destroy', $table->id) }}" method="POST"
                                 onsubmit="return confirmDelete()">

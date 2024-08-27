@@ -32,7 +32,8 @@
                             <tr class="border-b border-gray-200 hover:bg-gray-100 px-4">
                                 <td>
                                     <div class="flex items-center">
-                                        <img src="{{ $category['photo'] }}" class="h-6 w-6 mr-2" />
+                                        <img src="{{ Str::startsWith($category->photo, 'http') ? $category->photo : asset('images/' . $category->photo) }}"
+                                            class="h-6 w-6 mr-2" />
                                         <span>{{ $category['name'] }}</span>
                                     </div>
                                 </td>

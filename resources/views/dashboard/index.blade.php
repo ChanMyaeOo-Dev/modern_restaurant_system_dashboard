@@ -129,7 +129,8 @@
                             <tr class="border-b dark:border-gray-700">
                                 <td class="px-4 py-3">
                                     <div class="flex items-center gap-3">
-                                        <img src="{{ $item->photo }}" class="w-10 aspect-square rounded-md">
+                                        <img src="{{ Str::startsWith($item->photo, 'http') ? $item->photo : url('images/' . $item->photo) }}"
+                                            class="w-10 aspect-square rounded-md">
                                         <span>{{ $item->name }}</span>
                                     </div>
                                 </td>
@@ -148,6 +149,47 @@
                 </table>
             </div>
         </div>
+
+        <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden w-1/2 p-6">
+            <h4 class="mb-4 text-md font-bold text-gray-600 dark:text-gray-300">Latest Dishes</h4>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th class="!px-4 py-3">Dish</th>
+                            <th class="!px-4 py-3">Price</th>
+                            <th class="!px-4 py-3">Category</th>
+                            <th class="!px-4 py-3">
+                                <span class="sr-only">Actions</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($latest_items as $item)
+                            <tr class="border-b dark:border-gray-700">
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center gap-3">
+                                        <img src="{{ asset('images/' . $item->photo) }}"
+                                            class="w-10 aspect-square rounded-md">
+                                        <span>{{ $item->name }}</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3">{{ $item->price . ' Ks' }}</td>
+                                <td class="px-4 py-3">{{ $item->category->name }}</td>
+                                <td class="px-4 py-3 flex items-center justify-end">
+                                    <a href="{{ route('items.show', $item->id) }}"
+                                        class="border border-gray-400 inline-flex items-center px-1 py-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-md focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
+                                        type="button">
+                                        Detail
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>

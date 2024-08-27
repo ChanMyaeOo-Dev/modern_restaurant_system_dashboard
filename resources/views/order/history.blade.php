@@ -605,7 +605,7 @@
                         <tr>
                             <th class="!px-4">
                                 <div class="flex items-center flex-nowrap">
-                                    <span>ID</span>
+                                    <span>Date</span>
                                 </div>
                             </th>
                             <th class="!px-4">
@@ -632,7 +632,7 @@
                             <tr class="border-b border-gray-200 hover:bg-gray-100">
                                 <td class="px-4">
                                     <div class="flex items-center">
-                                        <span>{{ $order['id'] }}</span>
+                                        <span>{{ $order['created_at']->format('d/m/Y h:m A') }}</span>
                                     </div>
                                 </td>
                                 <td class="px-4">

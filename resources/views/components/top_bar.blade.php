@@ -19,9 +19,10 @@
                 </svg>
                 <span class="sr-only">Toggle sidebar</span>
             </button>
-            <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
-                <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-8" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-bold whitespace-nowrap dark:text-white">CmDash</span>
+            <a href="#" class="flex items-center justify-between mr-4">
+                <img src="{{ asset('assets/mrss_logo.png') }}" class="mr-1 h-8" alt="Flowbite Logo" />
+                {{-- <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-8" alt="Flowbite Logo" /> --}}
+                <span class="self-center text-2xl font-bold whitespace-nowrap dark:text-white">MRSS</span>
             </a>
         </div>
         <div class="flex items-center lg:order-2">
