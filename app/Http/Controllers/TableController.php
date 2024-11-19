@@ -28,7 +28,7 @@ class TableController extends Controller
         $filename = "table_qr_" . $request->name . "_" . time() . '.svg';
         $path = public_path('qr_codes/' . $filename);
         QrCode::size(300)
-            ->generate("http://192.168.41.57:3000/table/" . $table_id, $path);
+            ->generate("http://192.168.10.223:3000/table/" . $table_id, $path);
         $table->qr_code = $filename;
         $table->save();
         return back()->with('success_message', 'New Table has been successfully saved.');

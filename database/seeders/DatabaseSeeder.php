@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
         // Seed categories first
-        $this->call(CategorySeeder::class);
+        // $this->call(CategorySeeder::class);
         // Seed items after categories
-        $this->call(ItemSeeder::class);
+        // $this->call(ItemSeeder::class);
         //Seed Tables
         Table::factory()->create([
             'name' => 'admin_table',
@@ -36,22 +36,25 @@ class DatabaseSeeder extends Seeder
         $filename = "table_qr_" . "Table_A" . "_" . time() . '.svg';
         $path = public_path('qr_codes/' . $filename);
         QrCode::size(300)
-            ->generate("http://192.168.45.150:3000/table/" . $table_id, $path);
+            ->generate("http://192.168.10.223:3000/table/" . $table_id, $path);
         Table::factory()->create([
             "id" => $table_id,
             "name" => "Table A",
             "qr_code" => $filename,
         ]);
 
-        Cart::factory()->create([
-            'table_id' => '5',
-            'item_id' => '1',
-            'quantity' => 2,
-        ]);
-        Cart::factory()->create([
-            'table_id' => '5',
-            'item_id' => '2',
-            'quantity' => 2,
-        ]);
+        // Cart::factory()->create([
+        //     'table_id' => '5',
+        //     'item_id' => '1',
+        //     'quantity' => 2,
+        // ]);
+        // Cart::factory()->create([
+        //     'table_id' => '5',
+        //     'item_id' => '2',
+        //     'quantity' => 2,
+        // ]);
     }
 }
+
+
+// php artisan serve --host=192.168.10.223 --port=8000
