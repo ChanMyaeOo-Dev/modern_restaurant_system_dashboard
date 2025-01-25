@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view) {
-            $view->with('orderCount', Order::where('is_completed', '0')->count());
+            $view->with('orderCount', Order::where('is_completed', '1')->count());
             $view->with('orderItemCount', OrderItem::count());
             $view->with('itemCount', Item::count());
         });

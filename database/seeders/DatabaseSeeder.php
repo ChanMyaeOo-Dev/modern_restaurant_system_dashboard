@@ -57,4 +57,5 @@ class DatabaseSeeder extends Seeder
 }
 
 
-// php artisan serve --host=192.168.10.223 --port=8000
+// php artisan serve --host=192.168.47.246 --port=8000 //Machine Wifi
+// php artisan serve --host=192.168.211.223 --port=8000 //CMO Wifi
