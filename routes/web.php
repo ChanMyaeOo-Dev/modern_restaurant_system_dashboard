@@ -6,13 +6,17 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\TableController;
 
 Route::auth();
+
 Route::middleware('auth')->group(function () {
+    Route::get('/summarize-feedback', [FeedbackController::class, 'summarize'])->name('summarize-feedback');
+
     Route::get('/', [DashboardController::class, 'index'])->name('/');
 
     Route::get('doc', [DocController::class, 'index'])->name('doc');
@@ -35,4 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('carts', CartController::class);
     Route::post('/cart/update/{id}', [CartController::class, 'update']);
     Route::delete('/cart/remove/{id}', [CartController::class, 'destroy']);
+
+    Route::resource('/feedbacks', FeedbackController::class);
 });
