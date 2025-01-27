@@ -23,7 +23,7 @@ class FeedbackController extends Controller
 
     public function summarize()
     {
-        $feedbacks = Feedback::all();
+        $feedbacks = Feedback::whereDate('created_at', '>=', now()->subDays(30))->get();
 
         $ratings = $feedbacks->pluck('rating')->toArray(); // Assuming 'rating' is the column name
         $messages = $feedbacks->pluck('message')->toArray(); // Assuming 'message' is the column name
