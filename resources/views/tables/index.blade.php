@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-    <section class="bg-white dark:bg-gray-900 shadow rounded-md p-6">
+    <section class="bg-white dark:bg-gray-900 shadow rounded-md p-6 h-screen">
         <div class="bg-white dark:bg-gray-800 relative sm:rounded-lg overflow-hidden">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 pb-4">
                 <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Tables</h2>

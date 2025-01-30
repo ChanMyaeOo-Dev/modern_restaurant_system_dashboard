@@ -12,8 +12,10 @@
     <div class="antialiased bg-white dark:bg-gray-900">
         @include('components.side_bar')
         @include('components.top_bar')
-        <main class="p-4 md:ml-64 mt-16 border rounded-2xl border-gray-200 bg-gray-100 min-h-screen">
-            @yield('content')
+        <main class="start-64 h-screen fixed top-16 end-0 overflow-y-auto border border-gray-300 rounded-2xl">
+            <div class="px-4 pt-4 pb-20 bg-gray-100 max-w-screen min-h-screen">
+                @yield('content')
+            </div>
         </main>
     </div>
     @include('components.notificataion')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ItemResource;
+use App\Models\Feedback;
 use App\Models\Item;
 use App\Models\Order;
 use Carbon\Carbon;
@@ -14,7 +15,6 @@ class DashboardController extends Controller
     {
         $total_sale = Order::sum('total_price');
         $orders = Order::where('is_completed', '0')->latest()->take(8)->get();
-        // Get the last 7 days' income for each day
         // Fetch the last 7 days' income data
         $last7DaysIncome = Order::where('is_completed', '1') // Assuming '1' means the order is completed
             ->whereDate('created_at', '>=', Carbon::now()->subDays(6)) // Get orders from the last 7 days including today
@@ -53,6 +53,12 @@ class DashboardController extends Controller
 
         $latest_items = Item::latest()->take(5)->get();
         $latest_items = ItemResource::collection($latest_items);
-        return view('dashboard.index', compact('orders', 'totalSale', 'last7DaysIncomeArray', 'last7Days', 'hotItems', 'total_sale', 'latest_items'));
+
+        $feedbacks = Feedback::latest()->limit(50)->get();
+        $ratings = $feedbacks->pluck('rating')->toArray(); // Assuming 'rating' is the column name
+        $ratingDistribution = array_count_values($ratings); // Count occurrences of each rating
+        $ratingDistribution = array_replace([1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0], $ratingDistribution);
+
+        return view('dashboard.index', compact('orders', 'totalSale', 'last7DaysIncomeArray', 'last7Days', 'hotItems', 'total_sale', 'latest_items', 'ratingDistribution'));
     }
 }
