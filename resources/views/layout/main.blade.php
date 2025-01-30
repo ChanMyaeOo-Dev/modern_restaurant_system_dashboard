@@ -9,10 +9,10 @@
 </head>
 
 <body>
-    <div class="antialiased bg-gray-50 dark:bg-gray-900">
-        @include('components.top_bar')
+    <div class="antialiased bg-white dark:bg-gray-900">
         @include('components.side_bar')
-        <main class="p-4 md:ml-64 py-20">
+        @include('components.top_bar')
+        <main class="p-4 md:ml-64 mt-16 border rounded-2xl border-gray-200 bg-gray-100 min-h-screen">
             @yield('content')
         </main>
     </div>

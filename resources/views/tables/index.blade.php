@@ -9,7 +9,7 @@
                 <div
                     class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                     <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                        class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                        class="flex items-center justify-center text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
                         <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -24,7 +24,7 @@
                 <div class="grid grid-cols-3 gap-4">
                     @foreach ($tables as $table)
                         <div class="table-card">
-                            <img src="{{ $table->qr_code == 'admin' ? 'https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1724603617~exp=1724607217~hmac=e8922d602dde5882329237e691c32c5c0c917cefc9a1db2de715921cf64a7b8f&w=1480' : asset('qr_codes/' . $table->qr_code) }}"
+                            <img src="{{ $table->qr_code == 'admin' ? 'https://img.freepik.com/free-vector/green-circle-with-white-user_78370-4707.jpg?t=st=1724603617~exp=1724607217~hmac=e8922d602dde5882329237e691c32c5c0c917cefc9a1db2de715921cf64a7b8f&w=1480' : asset('qr_codes/' . $table->qr_code) }}"
                                 class="w-24 h-24 p-2 bg-slate-50">
                             <div class="flex flex-col items-start me-auto">
                                 <p class="text-sm text-slate-400">{{ '#' . $table->id }}</p>
@@ -76,12 +76,12 @@
                                 <div class="grid gap-4 mb-4 grid-cols-2">
                                     <div class="col-span-2">
                                         <input type="text" name="name" id="name"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                                             placeholder="Type Table name" required="">
                                     </div>
                                 </div>
                                 <button type="submit"
-                                    class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    class="text-white inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"

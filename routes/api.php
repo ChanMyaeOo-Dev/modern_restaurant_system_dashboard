@@ -5,6 +5,7 @@ use App\Http\Controllers\api\ItemApiController;
 use App\Http\Controllers\api\OrderApiController;
 use App\Http\Controllers\CartApiController;
 use App\Http\Controllers\FeedbackApiController;
+use App\Http\Controllers\PaymentApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +38,6 @@ Route::middleware([])->group(function () {
 
     Route::get('/feedback_test', [FeedbackApiController::class, 'index']);
     Route::post('/feedback_post', [FeedbackApiController::class, 'store']);
+
+    Route::post('make_payment', [PaymentApiController::class, 'index']);
 });

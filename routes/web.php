@@ -11,10 +11,15 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\TestController;
 
 Route::auth();
 
 Route::middleware('auth')->group(function () {
+
+    Route::get('teste', [TestController::class, 'encryptData'])->name('teste');
+    Route::get('test', [TestController::class, 'index'])->name('test');
+
     Route::get('/summarize-feedback', [FeedbackController::class, 'summarize'])->name('summarize-feedback');
 
     Route::get('/', [DashboardController::class, 'index'])->name('/');

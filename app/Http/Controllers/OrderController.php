@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ItemResource;
 use App\Http\Resources\OrderItemResource;
 use App\Http\Resources\OrderResource;
 use App\Models\Cart;
@@ -36,6 +37,8 @@ class OrderController extends Controller
         foreach ($all_carts as $ind_cart) {
             $cart_total += $ind_cart->item->price * $ind_cart->quantity;
         }
+        $items = ItemResource::collection($items);
+        $items = $items->toArray(request());
         return view('order.create', compact('items', 'carts', 'cart_total', 'tables'));
     }
 

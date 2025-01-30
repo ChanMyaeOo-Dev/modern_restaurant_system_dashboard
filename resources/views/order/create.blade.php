@@ -9,13 +9,13 @@
             <div class="grid gap-4 grid-cols-4 w-full">
                 @foreach ($items as $item)
                     <div class="bg-white rounded-md shadow p-4 md:p-5">
-                        <img src="{{ $item->photo }}" class="rounded shadow-md mb-3">
-                        <p class="">{{ $item->name }}</p>
-                        <p class="text-gray-500 font-bold mb-2">{{ $item->price . ' MMK' }}</p>
+                        <img src="{{ $item['photo'] }}" class="rounded shadow-md mb-3">
+                        <p class="">{{ $item['name'] }}</p>
+                        <p class="text-gray-500 font-bold mb-2">{{ $item['price'] . ' MMK' }}</p>
                         <form action="{{ route('carts.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="table_id" value="1">
-                            <input type="hidden" name="item_id" value="{{ $item->id }}">
+                            <input type="hidden" name="item_id" value="{{ $item['id'] }}">
                             <button
                                 class="w-full text-gray-700 border border-gray-700 rounded-md text-sm p-2 hover:bg-slate-500 hover:text-white">
                                 <span>Add To Cart</span>
@@ -33,7 +33,7 @@
                         <div class="flex items-start bg-white border border-gray-200 rounded-md p-4 mb-2"
                             id="cart-item-{{ $cart->id }}">
                             <!-- Product Image -->
-                            <img src="{{ $cart->item->photo }}" alt="{{ $cart->item->name }}"
+                            <img src="{{ url('images/' . $cart->item->photo) }}" alt="{{ $cart->item->name }}"
                                 class="w-24 h-24 rounded-md object-cover mr-4">
 
                             <!-- Product Details -->
@@ -73,7 +73,7 @@
                         @csrf
                         <input type="hidden" name="table_id" value="1">
                         <button
-                            class="mt-3 w-full text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm p-3 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                            class="mt-3 w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm p-3 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
                             Order Now
                         </button>
                     </form>

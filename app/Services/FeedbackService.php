@@ -30,7 +30,8 @@ class FeedbackService
                         'Content-Type' => 'application/json',
                     ],
                     'json' => [
-                        'inputs' => "Summarize this feedback, try to keep it simple and readable, if need be add more details: " . $feedbackText,
+                        // 'inputs' => "Summarize this feedback, try to keep it simple and readable, if need be add more details: " . $feedbackText,
+                        'inputs' => $feedbackText,
                         'parameters' => [
                             'max_length' => 200,
                             'min_length' => 100,

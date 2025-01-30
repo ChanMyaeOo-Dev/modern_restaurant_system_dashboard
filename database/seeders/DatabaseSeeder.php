@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        Feedback::factory()->count(10)->create();
+        // Feedback::factory()->count(10)->create();
         // \App\Models\User::factory(10)->create();
         // User::factory()->create([
         //     'name' => 'Admin',
@@ -61,3 +61,13 @@ class DatabaseSeeder extends Seeder
 
 // php artisan serve --host=192.168.47.246 --port=8000 //Machine Wifi
 // php artisan serve --host=192.168.211.223 --port=8000 //CMO Wifi
+
+
+// Merchat public key
+// MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC2w9xvFJNFZRWshQgfReIHCDLlE5xos+MsOX0Zt4R9HspFbeqPQ19rbX6q7hHWHtARrEbu0qeJ79vrqHYAFDT4hKG3sBjtMnsgHWWPeJ6QmiCE/KJaD/vbjQKmYHDNPkUtPdVBTRxIXbJFbs1oipvbEQ2RLYWRqGHL0oGzO1EvcQIDAQAB
+
+// Full Api Key
+// ptc99er.Y0GWC66tobKN1B2FNt8P6_wMHd0
+
+// Callback Key
+// 404ae61f7bddfccad62a9a5789da2051
