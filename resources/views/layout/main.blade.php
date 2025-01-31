@@ -18,6 +18,8 @@
             </div>
         </main>
     </div>
+    @include('includes.dashboard_filter')
+
     @include('components.notificataion')
 </body>
 

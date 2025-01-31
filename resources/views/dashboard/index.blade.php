@@ -55,7 +55,7 @@
     <section class="flex gap-4 mb-4">
         <div class="w-1/3 bg-white flex flex-col rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
             <div>
-                <h4 class="mb-4 text-md font-bold text-gray-600 dark:text-gray-300">Total income in last 7 days</h4>
+                <h4 class="mb-4 text-md font-bold text-gray-600 dark:text-gray-300">Daily Customer Demand</h4>
                 <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">{{ $totalSale . ' Ks' }}
                 </h5>
                 <p class="text-base font-normal text-gray-500 dark:text-gray-400">Sales this week</p>

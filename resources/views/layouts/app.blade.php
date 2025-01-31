@@ -19,7 +19,7 @@
         }
 
         body {
-            background: #3399ff;
+            background: #16a34a;
         }
 
 
