@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/summarize-feedback', [FeedbackController::class, 'summarize'])->name('summarize-feedback');
 
     Route::get('/', [DashboardController::class, 'index'])->name('/');
+    Route::get('filter-datas', [DashboardController::class, 'getFilteredData'])->name('filter-datas');
 
     Route::get('doc', [DocController::class, 'index'])->name('doc');
 
