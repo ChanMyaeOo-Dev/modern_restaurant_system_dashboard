@@ -8,14 +8,13 @@ use App\Models\Order;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
     public function index(Request $request)
     {
         $query = Order::where('is_completed', '1');
-
         if ($request->has('filter')) {
             switch ($request->filter) {
                 case 'last_week':
@@ -36,9 +35,14 @@ class ReportController extends Controller
                     break;
             }
         }
+        // Get total orders and total income grouped by date
+        $dailyReport = $query
+            ->selectRaw('DATE(created_at) as order_date, COUNT(*) as total_orders, SUM(total_price) as total_income')
+            ->groupBy('order_date')
+            ->orderByDesc('order_date')
+            ->get();
 
-        $orders = $query->latest()->get();
-        return view('reports.index', compact('orders'));
+        return view('reports.index', compact('dailyReport'));
     }
 
     public function create()
