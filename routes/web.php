@@ -13,6 +13,7 @@ use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\TestController;
+use App\Models\Report;
 
 Route::auth();
 
@@ -48,5 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/cart/remove/{id}', [CartController::class, 'destroy']);
 
     Route::resource('/feedbacks', FeedbackController::class);
+
     Route::resource('/reports', ReportController::class);
+    Route::get('/filter-datas', [ReportController::class, 'index'])->name('filter-datas');
 });

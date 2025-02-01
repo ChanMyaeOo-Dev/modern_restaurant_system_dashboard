@@ -6,13 +6,38 @@ use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
 use App\Models\Order;
 use App\Models\Report;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use DB;
 
 class ReportController extends Controller
 {
-
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::where('is_completed', '1')->latest()->get();
+        $query = Order::where('is_completed', '1');
+
+        if ($request->has('filter')) {
+            switch ($request->filter) {
+                case 'last_week':
+                    $query->whereBetween('created_at', [Carbon::now()->subWeek(), Carbon::now()]);
+                    break;
+                case 'last_month':
+                    $query->whereBetween('created_at', [Carbon::now()->subMonth(), Carbon::now()]);
+                    break;
+                case 'last_year':
+                    $query->whereBetween('created_at', [Carbon::now()->subYear(), Carbon::now()]);
+                    break;
+                case 'custom':
+                    if ($request->start_date && $request->end_date) {
+                        $startDate = Carbon::parse($request->start_date)->startOfDay();
+                        $endDate = Carbon::parse($request->end_date)->endOfDay();
+                        $query->whereBetween('created_at', [$startDate, $endDate]);
+                    }
+                    break;
+            }
+        }
+
+        $orders = $query->latest()->get();
         return view('reports.index', compact('orders'));
     }
 

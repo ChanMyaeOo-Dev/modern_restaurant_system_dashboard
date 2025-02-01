@@ -2,9 +2,29 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <link rel="icon" href="{{ asset('assets/logo_2.png') }}" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MRSS</title>
+    <!-- Primary Meta Tags -->
+    <title>Smart Serve</title>
+    <meta name="title" content="Smart Serve Restaurant" />
+    <meta name="description" content="Smart Serve Restaurant." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="smart serve link" />
+    <meta property="og:title" content="Smart Serve Restaurant" />
+    <meta property="og:description" content="Smart Serve Restaurant." />
+    <meta property="og:image" content="{{ asset('assets/logo_2.png') }}" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="twitter link" />
+    <meta property="twitter:title" content="Smart Serve Restaurant" />
+    <meta property="twitter:description" content="Smart Serve Restaurant." />
+    <meta property="twitter:image" content="{{ asset('assets/logo_2.png') }}" />
+
+    <!-- Meta Tags Generated with https://metatags.io -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -18,8 +38,6 @@
             </div>
         </main>
     </div>
-    @include('includes.dashboard_filter')
-
     @include('components.notificataion')
 </body>
 
