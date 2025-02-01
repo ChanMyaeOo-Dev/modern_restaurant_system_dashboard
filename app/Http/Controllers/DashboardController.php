@@ -57,6 +57,8 @@ class DashboardController extends Controller
         $latest_items = Item::latest()->take(5)->get();
         $latest_items = ItemResource::collection($latest_items);
 
+        // dd($last7DaysIncomeArray);
+
         return view('dashboard.index', compact('orders', 'totalSale', 'last7DaysIncomeArray', 'last7Days', 'hotItems', 'total_sale', 'latest_items', 'ratingDistribution'));
     }
 }

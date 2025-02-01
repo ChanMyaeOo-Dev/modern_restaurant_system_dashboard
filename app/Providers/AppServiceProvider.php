@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Feedback;
 use App\Models\Item;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -28,9 +29,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view) {
-            $view->with('orderCount', Order::where('is_completed', '1')->count());
+            $view->with('orderCount', Order::where('is_completed', '0')->count());
             $view->with('orderItemCount', OrderItem::count());
             $view->with('itemCount', Item::count());
+            $view->with('feedbackCount', Feedback::count());
         });
     }
 }

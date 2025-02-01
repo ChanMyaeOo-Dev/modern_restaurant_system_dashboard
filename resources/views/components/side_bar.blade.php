@@ -158,12 +158,12 @@
                     </div>
                     <span
                         class="inline-flex justify-center items-center w-5 h-5 text-xs font-semibold rounded-full text-green-800 bg-green-100 dark:bg-green-200 dark:text-green-800">
-                        {{ $orderCount }}
+                        {{ $feedbackCount }}
                     </span>
                 </a>
             </li>
-            <li class="{{ request()->is('feedbacks') ? 'active' : 'text-gray-600 hover:bg-gray-100 rounded-md' }}">
-                <a href="{{ route('feedbacks.index') }}" class="flex items-center p-2 text-base font-medium">
+            <li class="{{ request()->is('reports') ? 'active' : 'text-gray-600 hover:bg-gray-100 rounded-md' }}">
+                <a href="{{ route('reports.index') }}" class="flex items-center p-2 text-base font-medium">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd"
                             d="M5.625 1.5H9a3.75 3.75 0 0 1 3.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H16.5a3.75 3.75 0 0 1 3.75 3.75v7.875c0 1.035-.84 1.875-1.875 1.875H5.625a1.875 1.875 0 0 1-1.875-1.875V3.375c0-1.036.84-1.875 1.875-1.875ZM9.75 17.25a.75.75 0 0 0-1.5 0V18a.75.75 0 0 0 1.5 0v-.75Zm2.25-3a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 .75-.75Zm3.75-1.5a.75.75 0 0 0-1.5 0V18a.75.75 0 0 0 1.5 0v-5.25Z"

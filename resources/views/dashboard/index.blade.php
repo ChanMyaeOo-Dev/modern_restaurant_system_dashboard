@@ -185,7 +185,7 @@
 
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="{{ url('js/libs/apexcharts.js') }}"></script>
 
     <script>
         const options = {
