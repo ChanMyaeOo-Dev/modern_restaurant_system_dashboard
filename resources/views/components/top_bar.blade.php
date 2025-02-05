@@ -1,5 +1,5 @@
 <nav
-    class="bg-white px-4 h-16 flex items-center justify-end dark:bg-gray-800 dark:border-gray-700 fixed left-64 right-0 top-0 z-40">
+    class="bg-white px-4 h-16 flex items-center justify-end dark:bg-gray-800 dark:border-gray-700 fixed left-64 right-0 top-0">
     <div class="flex flex-wrap justify-end items-center">
         <div class="flex items-center lg:order-2">
             <button type="button" data-drawer-toggle="drawer-navigation" aria-controls="drawer-navigation"
