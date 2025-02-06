@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ItemResource;
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
@@ -15,6 +17,7 @@ class ItemController extends Controller
         $items = ItemResource::collection($items);
         return view('item.index', ["items" => $items->toArray(request())]);
     }
+
     public function search(Request $request)
     {
         $query = $request->input('query');

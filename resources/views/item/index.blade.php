@@ -125,6 +125,9 @@
                             <th>
                                 <span class="sr-only">Actions</span>
                             </th>
+                            <th>
+                                <span class="sr-only">Total Sale</span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -138,6 +141,9 @@
                                 </td>
                                 <td>
                                     {{ $item['price'] . ' MMK' }}
+                                </td>
+                                <td>
+                                    {{ $item['category'] }}
                                 </td>
                                 <td>
                                     {{ $item['category'] }}
