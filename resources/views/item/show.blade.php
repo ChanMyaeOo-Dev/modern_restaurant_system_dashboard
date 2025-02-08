@@ -19,7 +19,8 @@
                 </div>
             </div>
             <div class="w-full">
-                <img src="{{ $item->photo }}" class="rounded shadow-md w-[300px] mb-3">
+                <img src="{{ Str::startsWith($item->photo, 'http') ? $item->photo : url('images/' . $item->photo) }}"
+                    class="rounded shadow-md w-[300px] mb-3">
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 w-full mb-4">
                     <div class="sm:col-span-2">
                         <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Item Name</p>

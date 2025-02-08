@@ -145,9 +145,6 @@
                                 <td>
                                     {{ $item['category'] }}
                                 </td>
-                                <td>
-                                    {{ $item['category'] }}
-                                </td>
                                 <td class="px-4 py-3 gap-2 flex items-center justify-end">
                                     <a href="{{ route('items.show', $item['id']) }}"
                                         class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
