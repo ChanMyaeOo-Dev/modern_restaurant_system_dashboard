@@ -32,7 +32,7 @@ class TableController extends Controller
         // 192.168.211.223
         // 192.168.47.246
         QrCode::size(300)
-            ->generate("http://192.168.211.223:3000/table/" . $table_id . '?name=' . $table_name, $path);
+            ->generate("http://192.168.236.223:3000/table/" . $table_id . '?name=' . $table_name, $path);
         $table->qr_code = $filename;
         $table->save();
         return back()->with('success_message', 'New Table has been successfully saved.');
